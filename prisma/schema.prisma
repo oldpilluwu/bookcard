@@ -25,7 +25,41 @@ model User {
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   accounts      Account[]
   sessions      Session[]
+  role          String?
+  places        Place[]
+  bookings      Booking[]
   @@map(name: "users")
+}
+
+model Place {
+  id            String    @id @default(cuid())
+  userId        String    @map("user_id")
+  name          String?
+  description   String?
+  address       String?
+  lat           Float?
+  lng           Float?
+  price         Float?
+  bookings      Booking[]
+
+  image         String?
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Booking {
+  id            String    @id @default(cuid())
+  userId        String    @map("user_id")
+  placeId       String    @map("place_id")
+  date          DateTime?
+  timeStart     DateTime?
+  timeEnd       DateTime?
+  status        String?
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
 }
 
 
