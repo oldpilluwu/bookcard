@@ -1,13 +1,23 @@
 import '@/styles/globals.css'
-import { NextUIProvider } from '@nextui-org/react';
-import {SessionProvider} from 'next-auth/react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+
+
+const lightTheme = createTheme({
+  palette: {
+    mode: "light",
+  },
+});
+
 
 export default function App({ Component, pageProps, session }) {
   return (
-    <SessionProvider session={session}>
-        <NextUIProvider>
+    
+       <ThemeProvider theme={lightTheme}>
+          <CssBaseline/>
           <Component {...pageProps} />
-      </NextUIProvider>
-    </SessionProvider>
+        </ThemeProvider>
+    
   )
 }

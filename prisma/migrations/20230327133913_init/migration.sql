@@ -1,5 +1,14 @@
--- AlterTable
-ALTER TABLE "users" ADD COLUMN "role" TEXT;
+-- CreateTable
+CREATE TABLE "users" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "name" TEXT,
+    "email" TEXT,
+    "email_verified" DATETIME,
+    "image" TEXT,
+    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" DATETIME NOT NULL,
+    "role" TEXT
+);
 
 -- CreateTable
 CREATE TABLE "Place" (
@@ -31,3 +40,6 @@ CREATE TABLE "Booking" (
     CONSTRAINT "Booking_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "Booking_place_id_fkey" FOREIGN KEY ("place_id") REFERENCES "Place" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
