@@ -30,7 +30,7 @@ export default function Home() {
         
       </Head>
       <main className={styles.main}>
-        {user ? (<h1>{user.name}</h1>) : (
+        {user ? (<h1>{user.email}</h1>) : (
         <Container>
           <Button onClick={() => router.push('/auth/login')}>Login</Button>
           <Button onClick={() => router.push('/auth/signup')}>Signup</Button>
