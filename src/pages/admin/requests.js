@@ -1,10 +1,10 @@
 import AdminLayout from '@/components/AdminLayout'
 import React from 'react'
 
-export default function Dashboard() {
+export default function Requests() {
   return (
     <AdminLayout>
-        <h1>Dashboard</h1>
+        <h1>Requests</h1>
     </AdminLayout>
   )
 }
