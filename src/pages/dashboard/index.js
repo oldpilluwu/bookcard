@@ -70,7 +70,7 @@ export default function Album() {
             >
               <Button variant="contained" onClick={() => router.push('/dashboard/myBookings')}>My Bookings</Button>
               <Button variant="contained">My Places</Button>
-              <Button variant="outlined">Add Places</Button>
+              <Button variant="outlined" onClick={() => router.push('/dashboard/addPlaces')}>Add Places</Button>
             </Stack>
           </Container>
         </Box>
