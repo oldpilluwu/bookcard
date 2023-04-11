@@ -17,9 +17,9 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/dist/client/router';
 import useUser from '@/lib/useUser'
-import cardLayout from '@/components/cardLayout'
+import CardLayout from '@/components/CardLayout';
 
-const cards = [1];
+const cards = [1,2,3,4,5];
 
 const theme = createTheme();
 
@@ -81,32 +81,11 @@ export default function Album() {
           <Grid container spacing={4}>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      // 16:9
-                      pt: '56.25%',
-                    }}
-                    image="/SMU_Hall.jpg"
-                    alt="random" 
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Heading
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Book</Button>
-                  </CardActions>
-                </Card>
+
+                <CardLayout image="/SMU_Hall.jpg" heading="SMU HALL" description="Hall room for rent with high ceilings,
+                    ample natural light, and modern amenities. Perfect for conferences, and other special occasions." />
+
+
               </Grid>
             ))}
           </Grid>
@@ -130,6 +109,8 @@ export default function Album() {
         <Copyright />
       </Box> */}
       {/* End footer */}
+
+
     </ThemeProvider>
   );
 }
