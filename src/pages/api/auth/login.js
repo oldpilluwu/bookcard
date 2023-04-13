@@ -14,12 +14,13 @@ export default async function handler(req, res) {
 			where: {
 				email: email,
 				status: "ACTIVE",
-				OR: {
-					role: "USER",
-					role: "RENTER",
-				}
+				OR: [
+					{role: "USER"},
+					{role: "RENTER"}
+				]
 			},
 		});
+		console.log(user);
 		if (!user) {
 			res.status(401).json({ status: false });
 			return;
