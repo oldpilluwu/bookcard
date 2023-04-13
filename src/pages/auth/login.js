@@ -40,7 +40,7 @@ export default function SignIn() {
 					"user",
 					JSON.stringify(response.data.data)
 				);
-				router.push("/");
+				router.push("/dashboard");
 			}
 		}
 	};

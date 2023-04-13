@@ -25,7 +25,9 @@ function AdminLayout({ children }) {
                 </Grid>
                 <Grid item xs={9}>
                     <Header />
-                    {children}
+                    <Container>
+					{children}
+					</Container>
                 </Grid>
             </Grid>
         </div>
