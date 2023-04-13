@@ -18,6 +18,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/dist/client/router';
 import useUser from '@/lib/useUser'
 import CardLayout from '@/components/CardLayout';
+import DashboardLayout from '@/components/DashboardLayout';
 
 
 const theme = createTheme();
@@ -48,55 +49,8 @@ export default function Album() {
 
   
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <CameraIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Home
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <main>
-        {/* Hero unit */}
-        <Box
-          sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
-          }}
-        >
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
-            >
-              Places
-            </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Something short and leading about the collection below—its contents,
-              the creator, etc. Make it short and sweet, but not too short so folks
-              don&apos;t simply skip over it entirely.
-            </Typography>
-            <Stack
-              sx={{ pt: 4 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            >
-              <Button variant="contained" onClick={() => router.push('/dashboard/myBookings')}>My Bookings</Button>
-              <Button variant="contained">My Places</Button>
-              <Button variant="outlined" onClick={() => router.push('/dashboard/addPlaces')}>Add Places</Button>
-            </Stack>
-          </Container>
-        </Box>
 
-        {/* End hero unit */}
-
+      <DashboardLayout page="Home">
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
             {places.map((card) => (
@@ -111,27 +65,6 @@ export default function Album() {
             ))}
           </Grid>
         </Container>  
-      </main>
-
-
-      {/* Footer */}
-      {/* <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography>
-        <Copyright />
-      </Box> */}
-      {/* End footer */}
-
-
-    </ThemeProvider>
+        </DashboardLayout>
   );
 }

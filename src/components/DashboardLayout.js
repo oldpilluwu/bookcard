@@ -3,7 +3,7 @@ import Router from "next/router";
 import { Box, Container, Grid } from "@mui/material";
 import { DashboardHeader } from "./DashboardHeader";
 
-export default function DashboardLayout({ children }) {
+export default function DashboardLayout({ page, children }) {
 	useEffect(() => {
 		var user = JSON.parse(localStorage.getItem("user"));
 		if (
@@ -19,7 +19,7 @@ export default function DashboardLayout({ children }) {
             <Grid container>
                 
                 
-                    <DashboardHeader />
+                    <DashboardHeader page={page} />
                     <Container>
 					{children}
 					</Container>

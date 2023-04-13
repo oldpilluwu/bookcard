@@ -35,10 +35,8 @@ export default function AddPlace() {
   function buildForm() {
     return (
       <Container style={{height: "100vh"}}>
-        <Typography variant="h4" gutterBottom>
-          Add place
-        </Typography>
-        <Grid container spacing={3}>
+        
+        <Grid container spacing={3} mt={2}>
           <Grid item xs={12} sm={6}>
             <TextField
               required
@@ -106,15 +104,18 @@ export default function AddPlace() {
           </Grid>
           
         </Grid>
-        <Button onClick={submitPlace} variant="contained" color="primary" style={{marginTop: "1rem"}}>
+        <Container style={{display:"flex", justifyContent:"end"}}>
+        <Button onClick={submitPlace} variant="contained" size="large" color="primary" style={{marginTop: "1rem", padding: "0.5rem 4rem"}}>
           Add
         </Button>
+        </Container>
+        
       </Container>
     )
   }
 
   return (
-    <DashboardLayout>
+    <DashboardLayout page="Add Place">
       {buildForm()}
     </DashboardLayout>
   )
