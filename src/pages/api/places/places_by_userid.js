@@ -7,6 +7,7 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
     const {userId} = req.body;
+    console.log(userId);
 
 	await new Promise(async (resolve, reject) => {
 		const user = await prisma.place.findMany({

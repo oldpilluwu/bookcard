@@ -37,10 +37,11 @@ export default function Album() {
 
   const fetchPlaces = async () => {
     const res = await fetch('/api/places/places_by_userid', {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({userId: user.id}),
     })
     const json = await res.json()
     console.log(json.data)
