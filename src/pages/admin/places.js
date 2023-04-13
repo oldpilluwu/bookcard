@@ -7,10 +7,10 @@ const columns = [
   // { id: 'email', label: 'Email', minWidth: 170 },
   // { id: 'phone', label: 'Phone', minWidth: 100 },
   // { id: 'createdAt', label: 'Created At', minWidth: 170 },
-  { id: 'name', label: 'Name', },
-  { id: 'email', label: 'Email', },
-  { id: 'phone', label: 'Phone',  },
-  { id: 'createdAt', label: 'Created At', },
+  { id: 'name', label: 'Place Name', },
+  { id: 'address', label: 'Address', },
+  { id: 'seller_name', label: 'Renter Name', },
+  { id: 'seller_email', label: 'Renter Email', },
   
 ];
 
@@ -19,9 +19,18 @@ export default function Places() {
   const [data, setData] = useState([])
 
   const fetchData = async () => {
-    const res = await fetch('/api/admin/renters')
+    const res = await fetch('/api/places/all_places')
     const json = await res.json()
-    setData(json.data)
+    const list = []
+    json.data.forEach((item) => {
+      list.push({
+        name: item.name,
+        seller_name: item.user.name,
+        address: item.address,
+        seller_email: item.user.email,
+      })
+    })
+    setData(list)
     console.log(json.data);
   }
 
