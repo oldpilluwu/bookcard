@@ -114,10 +114,23 @@ export default function SignIn() {
             >
               Sign Up
             </Button>
-
+            {"Already have an account? "}
             <Link href="/auth/login" variant="body2">
-                  {"Already have an account? Sign In"}
+                  Sign In
             </Link>
+            <Box mt={2} style={{textAlign: "center",}}>
+            OR
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="success"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={() => router.push("/auth/renter")}
+            >
+              Register as a renter
+            </Button>
+            </Box>
             {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
