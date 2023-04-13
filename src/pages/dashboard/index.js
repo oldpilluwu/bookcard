@@ -51,7 +51,7 @@ export default function Album() {
   return (
 
       <DashboardLayout page="Home">
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 8 }}>
           <Grid container spacing={4}>
             {places.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>

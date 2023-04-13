@@ -15,17 +15,15 @@ export default function DashboardLayout({ page, children }) {
 	}, []);
 
     return(
-        <div style={{height: "100vh", width: "auto"}}>
-            <Grid container>
+        <Box style={{height: "100vh", width: "auto"}}>
                 
                 
                     <DashboardHeader page={page} />
                     <Container>
 					{children}
 					</Container>
-                
-            </Grid>
-        </div>
+
+        </Box>
     )
 
 }
