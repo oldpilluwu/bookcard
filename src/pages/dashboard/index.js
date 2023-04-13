@@ -19,7 +19,6 @@ import { useRouter } from 'next/dist/client/router';
 import useUser from '@/lib/useUser'
 import CardLayout from '@/components/CardLayout';
 
-const cards = [1,2,3,4,5];
 
 const theme = createTheme();
 
@@ -27,6 +26,27 @@ export default function Album() {
 
   const router = useRouter()
   const user = useUser()
+
+  const [places, setPlaces] = React.useState([])
+
+  React.useEffect(() => {
+    fetchPlaces()
+  }, [])
+
+
+  const fetchPlaces = async () => {
+    const res = await fetch('/api/places', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    const json = await res.json()
+    console.log(json.data)
+    setPlaces(json.data)
+  }
+
+  
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -79,12 +99,13 @@ export default function Album() {
 
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
-            {cards.map((card) => (
+            {places.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
 
-                <CardLayout image="/SMU_Hall.jpg" heading="SMU HALL" description="Hall room for rent with high ceilings,
-                    ample natural light, and modern amenities. Perfect for conferences, and other special occasions." />
+                {/* <CardLayout image="/SMU_Hall.jpg" heading="SMU HALL" description="Hall room for rent with high ceilings,
+                    ample natural light, and modern amenities. Perfect for conferences, and other special occasions." /> */}
 
+                <CardLayout image={card.image} heading={card.name} description={card.description} />
 
               </Grid>
             ))}

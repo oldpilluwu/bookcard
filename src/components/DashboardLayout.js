@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Header from "./AdminHeader";
-import Sidebar from "./AdminSidebar";
 import Router from "next/router";
 import { Box, Container, Grid } from "@mui/material";
+import { DashboardHeader } from "./DashboardHeader";
 
-function AdminLayout({ children }) {
+export default function DashboardLayout({ children }) {
 	useEffect(() => {
 		var user = JSON.parse(localStorage.getItem("user"));
 		if (
 			user == null ||
-			user == undefined ||
-			user.role !== "ADMIN"
+			user == undefined
 		) {
 			Router.push("/admin/login");
 		}
@@ -19,20 +17,15 @@ function AdminLayout({ children }) {
     return(
         <div style={{height: "100vh", width: "auto"}}>
             <Grid container>
-                <Grid item xs={3} style={{ height: "100vh", backgroundColor: "InfoBackground"}}>
-                    <Box height={60} />
-                    <Sidebar />
-                </Grid>
-                <Grid item xs={9}>
-                    <Header />
+                
+                
+                    <DashboardHeader />
                     <Container>
 					{children}
 					</Container>
-                </Grid>
+                
             </Grid>
         </div>
     )
 
 }
-
-export default AdminLayout;

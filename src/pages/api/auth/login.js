@@ -7,13 +7,13 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
 	const { email, password } = req.body;
+	console.log(req.body);
 
 	await new Promise(async (resolve, reject) => {
 		const user = await prisma.user.findFirst({
 			where: {
 				email: email,
 				status: "ACTIVE",
-				role: "USER",
 			},
 		});
 		if (!user) {
