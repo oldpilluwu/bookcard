@@ -41,7 +41,7 @@ export const DashboardHeader = (props) => {
 	<Box mr={2}>
 	<Button variant="text" color="inherit" onClick={() => router.push('/dashboard')}>Home</Button>
 	<Button variant="text" color="inherit" onClick={() => router.push('/dashboard/myBookings')}>My Bookings</Button>
-	<Button variant="text" color="inherit">My Places</Button>
+	{user.role == "RENTER" ? <Button variant="text" color="inherit" onClick={() => router.push('/dashboard/myPlaces')}>My Places</Button> : <></>}
 	{user.role == "RENTER" ? <Button variant="text" color="inherit" onClick={() => router.push('/dashboard/addPlaces')}>Add Places</Button> : <></>}
 	</Box>
 	<Button variant="contained" style={{backgroundColor: "white", color: "GrayText"}} onClick={Signout}>Sign out</Button>

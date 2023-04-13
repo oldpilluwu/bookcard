@@ -36,7 +36,7 @@ export default function Album() {
 
 
   const fetchPlaces = async () => {
-    const res = await fetch('/api/places', {
+    const res = await fetch('/api/places/all_places', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

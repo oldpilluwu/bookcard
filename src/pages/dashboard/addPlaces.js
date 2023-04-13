@@ -21,7 +21,7 @@ export default function AddPlace() {
   const submitPlace = async (event) => {
     event.preventDefault()
     console.log(user)
-    const res = await fetch('/api/add_place', {
+    const res = await fetch('/api/places/add_place', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
