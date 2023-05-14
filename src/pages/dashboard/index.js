@@ -19,30 +19,28 @@ import { useRouter } from 'next/dist/client/router';
 import useUser from '@/lib/useUser'
 import CardLayout from '@/components/CardLayout';
 import DashboardLayout from '@/components/DashboardLayout';
+import {getter} from '@/lib/getter'
 
 
 const theme = createTheme();
 
-export default function Album() {
+export default function Album({data}) {
 
   const router = useRouter()
-  const user = useUser()
 
   const [places, setPlaces] = React.useState([])
 
-  React.useEffect(() => {
-    fetchPlaces()
-  }, [])
+  // React.useEffect(() => {
+  //   fetchPlaces()
+  // }, [])
 
 
   const fetchPlaces = async () => {
-    const res = await fetch('/api/places/all_places', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    const json = await res.json()
+    
+    console.log(res);
+    if(!res.ok) {
+      router.push('/auth/login');
+    }
     console.log(json.data)
     setPlaces(json.data)
   }
@@ -53,8 +51,8 @@ export default function Album() {
       <DashboardLayout page="Home">
         <Container sx={{ py: 8 }}>
           <Grid container spacing={4}>
-            {places.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {data.map((card) => (
+              <Grid item key={card.id} xs={12} sm={6} md={4}>
 
                 {/* <CardLayout image="/SMU_Hall.jpg" heading="SMU HALL" description="Hall room for rent with high ceilings,
                     ample natural light, and modern amenities. Perfect for conferences, and other special occasions." /> */}
@@ -68,3 +66,11 @@ export default function Album() {
         </DashboardLayout>
   );
 }
+
+export async function getServerSideProps(context) {
+  const json = await getter('http://localhost:3000/api/places/all_places', context)
+  return {
+    props: {data: json.data}, // will be passed to the page component as props
+  };
+}
+

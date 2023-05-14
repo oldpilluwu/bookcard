@@ -1,23 +1,15 @@
 import '@/styles/globals.css'
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-
-
-const lightTheme = createTheme({
-  palette: {
-    mode: "light",
-  },
-});
+import { ThemeProvider } from "@material-tailwind/react";
 
 
 export default function App({ Component, pageProps, session }) {
   return (
     
-       <ThemeProvider theme={lightTheme}>
-          <CssBaseline/>
+       <ThemeProvider>
           <Component {...pageProps} />
         </ThemeProvider>
-    
   )
 }

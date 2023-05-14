@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
 
-	await new Promise(async (resolve, reject) => {
+	
 		const user = await prisma.place.findMany({
             select: {
                 user: {
@@ -25,12 +25,9 @@ export default async function handler(req, res) {
             }
 
         });
-		
 
-		
-				return res.status(200).send({
-					data: user,
-					status: true,
-				});
-	});
-}
+	    res.status(200).send({
+			data: user,
+			status: true,
+		});
+};

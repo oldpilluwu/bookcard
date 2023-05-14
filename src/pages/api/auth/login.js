@@ -20,22 +20,29 @@ export default async function handler(req, res) {
 				]
 			},
 		});
-		console.log(user);
 		if (!user) {
-			res.status(401).json({ status: false });
+			console.log("User not found")
+			res.status(401).json({ status: false, message: "User not found" });
 			return;
 		}
 
 		bcrypt.compare(password, user.password, (err, result) => {
+			console.log(result);
 			if (result) {
 				delete user.password;
-				return res.status(200).send({
-					data: user,
-					status: true,
-				});
+				// const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "1h" });
+				// res.setHeader("Set-Cookie", cookie.serialize("auth", token, {
+				// 	// httpOnly: true,
+				// 	secure: process.env.NODE_ENV !== "development",
+				// 	sameSite: "strict",
+				// 	maxAge: 3600,
+				// 	path: "/",
+				// 	}));
+				return res.json({ status: true, data: user})
 			}
 			return res.send({
 				status: false,
+				message: "Password does not match",
 			});
 		});
 	});

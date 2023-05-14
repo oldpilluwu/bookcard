@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
-	const { email, password, name } = req.body;
+	const { email, password, name, phone } = req.body;
 
 	await new Promise((resolve, reject) => {
 		bcrypt.hash(password, 10, async (err, hash) => {
@@ -16,6 +16,7 @@ export default async function handler(req, res) {
 					
 					email: email,
 					name: name,
+					phone: phone,
 					password: hash,
 					role: "RENTER",
 					status: "PENDING",

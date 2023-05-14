@@ -1,29 +1,39 @@
 import React, { useEffect, useState } from "react";
-import Router from "next/router";
+import {useRouter} from "next/router";
 import { Box, Container, Grid } from "@mui/material";
 import { DashboardHeader } from "./DashboardHeader";
+import ClientOnly from "@/lib/clientOnly";
+import useUser from "@/lib/useUser";
+import Loading from "./Loading";
 
 export default function DashboardLayout({ page, children }) {
+	const [loading, setLoading] = useState(true);
+	const router = useRouter();
 	useEffect(() => {
-		var user = JSON.parse(localStorage.getItem("user"));
-		if (
-			user == null ||
-			user == undefined
-		) {
-			Router.push("/admin/login");
+		const user = localStorage.getItem("user");
+		if(!user) {
+			router.push("/auth/login");
+		}
+		else{
+			setLoading(false);
 		}
 	}, []);
 
+	if(loading) {
+		return <Loading />
+	}
     return(
-        <Box style={{height: "100vh", width: "auto"}}>
+		<ClientOnly>
+			<Box style={{height: "100vh", width: "auto"}}>
                 
                 
-                    <DashboardHeader page={page} />
-                    <Container>
-					{children}
-					</Container>
+				<DashboardHeader page={page} />
+				<Container>
+				{children}
+				</Container>
 
-        </Box>
+	</Box>
+	</ClientOnly>
     )
 
 }

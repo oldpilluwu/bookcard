@@ -43,6 +43,7 @@ export default function Album() {
       },
       body: JSON.stringify({userId: user.id}),
     })
+    console.log(res);
     const json = await res.json()
     console.log(json.data)
     setPlaces(json.data)

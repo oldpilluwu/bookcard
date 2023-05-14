@@ -11,7 +11,8 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Button, Container } from '@mui/material'
 import useUser from '@/lib/useUser'
-import React from "react";
+import React, { useEffect } from "react";
+import Loading from '@/components/Loading'
 
 
 
@@ -19,9 +20,18 @@ import React from "react";
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-
   const router = useRouter()
-  const user = useUser()
+  // const user = useUser()
+  
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if(user) {
+      router.push("/dashboard");
+    }
+    else{
+      router.push("/auth/login");
+    }
+  }, [])
 
   return (
     <>
@@ -33,14 +43,15 @@ export default function Home() {
         
       </Head>
       <main className={styles.main}>
-        {user ? (<h1>{user.email}</h1>) : (
-        <Container>
+        {/* {user ? (<h1>{user.email}</h1>) : ( */}
+        {/* <Container>
           <Button onClick={() => router.push('/admin/login')}>Admin Login</Button> 
           <Button onClick={() => router.push('/auth/login')}>Login</Button> 
           <Button onClick={() => router.push('/auth/signup')}>Signup</Button>
           <Button onClick={() => router.push('/auth/renter')}>Request</Button>
-        </Container>)
-      }
+        </Container> */}
+      {/* } */}
+      <Loading />
       </main>
     </>
   )

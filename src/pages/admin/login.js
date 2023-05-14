@@ -13,16 +13,27 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useRouter } from 'next/dist/client/router';
 import axios from 'axios';
+import Loading from '@/components/Loading';
 
 
 
 
 export default function SignIn() {
-
     const router = useRouter()
 
+    const [loading, setLoading] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+      const user = localStorage.getItem("admin");
+      if (user != null && user != undefined) {
+        router.push("/admin/dashboard");
+      }
+      else{
+        setLoading(false);
+      }
+    }, []);
 
     const submitLogin = async (event) => {
         event.preventDefault()
@@ -37,13 +48,18 @@ export default function SignIn() {
 		if (response.data.status) {
 			{
 				localStorage.setItem(
-					"user",
+					"admin",
 					JSON.stringify(response.data.data)
 				);
 				router.push("/admin/dashboard");
 			}
 		}
 	};
+
+ 
+  if(loading) {
+    return <Loading />
+  }
 
 
   return (

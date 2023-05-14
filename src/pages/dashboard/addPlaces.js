@@ -7,6 +7,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { Button, Container } from "@mui/material";
 import useUser from "@/lib/useUser";
 import DashboardLayout from "@/components/DashboardLayout";
+import ClientOnly from "@/lib/clientOnly";
 
 export default function AddPlace() {
   const user = useUser();
@@ -116,7 +117,9 @@ export default function AddPlace() {
 
   return (
     <DashboardLayout page="Add Place">
+      <ClientOnly>
       {buildForm()}
+      </ClientOnly>
     </DashboardLayout>
   )
   
