@@ -24,15 +24,15 @@ export default function DashboardLayout({ page, children }) {
 	}
     return(
 		<ClientOnly>
-			<Box style={{height: "100vh", width: "auto"}}>
+			<div className="h-full w-auto bg-gray-100">
                 
                 
 				<DashboardHeader page={page} />
-				<Container>
+				<div>
 				{children}
-				</Container>
+				</div>
 
-	</Box>
+	</div>
 	</ClientOnly>
     )
 
