@@ -18,6 +18,7 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import { Tabs, Tab } from '@mui/material';
+import { formatDate } from '@/lib/utils';
 
 const TABS = [
     {
@@ -75,7 +76,7 @@ const RenterBookings = () => {
 
     const filterSearch = () => {
         let filteredData = data;
-        filteredData = filteredData.filter((item) => item.user.email.toLowerCase().startsWith(searchText.toLowerCase()));
+        filteredData = filteredData.filter((item) => item.user.email.toLowerCase().startsWith(searchText.toLowerCase()) || item.user.phone.toLowerCase().includes(searchText.toLowerCase()) || item.user.name.toLowerCase().startsWith(searchText.toLowerCase()) || item.place.name.toLowerCase().startsWith(searchText.toLowerCase()) || formatDate(item.date).startsWith(searchText.toLowerCase()) || item.slot.toLowerCase().startsWith(searchText.toLowerCase()));
         setBookings(filteredData);
     }
 
@@ -131,7 +132,7 @@ const RenterBookings = () => {
                   ))}
               </Tabs>
               <div className="w-full md:w-72">
-                <Input value={searchText} onChange={(e) => setSearchText(e.target.value)} label="Search User Email" icon={<MagnifyingGlassIcon className="h-5 w-5" />} />
+                <Input value={searchText} onChange={(e) => setSearchText(e.target.value)} label="Search" icon={<MagnifyingGlassIcon className="h-5 w-5" />} />
               </div>
             </div>
           </CardHeader>
@@ -157,8 +158,8 @@ const RenterBookings = () => {
                   const isLast = index === bookings.length - 1;
                   const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
                   
-                  const dateTime = new Date(date);
-                  const formattedDate  = dateTime.toLocaleDateString().replace(/\//g, '/');
+                  // const dateTime = new Date(date);
+                  // const formattedDate  = dateTime.toLocaleDateString().replace(/\//g, '/');
                   return (
                     <tr key={id}>
                       <td className={classes}>
@@ -198,7 +199,7 @@ const RenterBookings = () => {
                       <td className={classes}>
                         <div className="flex flex-col">
                           <Typography variant="small" color="blue-gray" className="font-normal">
-                            {formattedDate}
+                            {formatDate(date)}
                           </Typography>
                           
                         </div>
