@@ -52,21 +52,18 @@ export default function Album() {
   
   return (
 
-      <DashboardLayout page="Home">
-        <Container sx={{ py: 8 }} maxWidth="md">
-          <Grid container spacing={4}>
-            {places.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+    <DashboardLayout page="Home">
+    <div className='p-8'>
+      <Grid container spacing={4}>
+        {places.map((card) => (
+          <Grid item key={card.id} xs={12} sm={6} md={4}>
 
-                {/* <CardLayout image="/SMU_Hall.jpg" heading="SMU HALL" description="Hall room for rent with high ceilings,
-                    ample natural light, and modern amenities. Perfect for conferences, and other special occasions." /> */}
+            <CardLayout id={card.id} image={card.image} heading={card.name} description={card.description} />
 
-                <CardLayout image={card.image} heading={card.name} description={card.description} />
-
-              </Grid>
-            ))}
           </Grid>
-        </Container>  
-        </DashboardLayout>
+        ))}
+      </Grid>
+    </div>  
+    </DashboardLayout>
   );
 }

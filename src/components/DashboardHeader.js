@@ -60,7 +60,7 @@ export const DashboardHeader = ({data}) => {
 			  My Bookings
 			</Link>
 		  </Typography>
-		  <Typography
+		  {user.role === "RENTER" && (<Typography
 			as="li"
 			variant="small"
 			color="blue-gray"
@@ -69,8 +69,9 @@ export const DashboardHeader = ({data}) => {
 			<Link href="/dashboard/myPlaces" className="flex items-center">
 			  My Places
 			</Link>
-		  </Typography>
-		  <Typography
+		  </Typography>)}
+		  {user.role === "RENTER" && (
+			<Typography
 			as="li"
 			variant="small"
 			color="blue-gray"
@@ -80,6 +81,7 @@ export const DashboardHeader = ({data}) => {
 			  Add Places
 			</Link>
 		  </Typography>
+		  )}
 		  
 		</ul>
 	  );

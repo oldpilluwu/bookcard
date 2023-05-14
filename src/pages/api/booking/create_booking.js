@@ -24,6 +24,21 @@ export default async function handler(req, res) {
                 status: false,
             });
         }
+
+        const booking2 = await prisma.booking.findFirst({
+            where: {
+                placeId: placeId,
+                date: date,
+                slot: slot,
+                userId: userId,
+            }
+        });
+        if(booking2){
+            return res.status(400).send({
+                message: "You already have a booking in this slot",
+                status: false,
+            });
+        }
         await prisma.booking.create({
             data: {
                 slot: slot,

@@ -49,7 +49,7 @@ export default function Album({data}) {
   return (
 
       <DashboardLayout page="Home">
-        <Container sx={{ py: 8 }}>
+        <div className='p-8'>
           <Grid container spacing={4}>
             {data.map((card) => (
               <Grid item key={card.id} xs={12} sm={6} md={4}>
@@ -62,7 +62,7 @@ export default function Album({data}) {
               </Grid>
             ))}
           </Grid>
-        </Container>  
+        </div>  
         </DashboardLayout>
   );
 }

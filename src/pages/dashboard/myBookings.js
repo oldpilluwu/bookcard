@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import CameraIcon from '@mui/icons-material/PhotoCamera';
@@ -17,26 +17,20 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import DashboardLayout from '@/components/DashboardLayout';
 import CardLayout from '@/components/CardLayout';
+import UserBookings from '@/components/UserBookings';
+import RenterBookings from '@/components/RenterBookings';
 
 
 const theme = createTheme();
 
 export default function Album() {
+  const [user, setUser] = useState({})
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('user')));
+  }, []);
   return (
     <DashboardLayout page="My Bookings">
-        <Container sx={{ py: 8 }} maxWidth="md">
-          <Grid container spacing={4}>
-            {/* {places.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-
-
-
-                <CardLayout image={card.image} heading={card.name} description={card.description} />
-
-              </Grid>
-            ))} */}
-          </Grid>
-        </Container>  
+        {user.role === 'USER' ? <UserBookings /> : <RenterBookings />}
         </DashboardLayout>
   );
 }
