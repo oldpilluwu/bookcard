@@ -8,6 +8,7 @@ import { Button, Container } from "@mui/material";
 import useUser from "@/lib/useUser";
 import DashboardLayout from "@/components/DashboardLayout";
 import ClientOnly from "@/lib/clientOnly";
+import { Paper } from "@mui/material";
 
 export default function AddPlace() {
   const user = useUser();
@@ -36,7 +37,11 @@ export default function AddPlace() {
   function buildForm() {
     return (
       <Container style={{height: "100vh"}}>
-        
+        <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } , height :"600px" }}>
+          <Typography component="h1" variant="h4" align="center">
+            Checkout
+          </Typography>
         <Grid container spacing={3} mt={2}>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -109,6 +114,8 @@ export default function AddPlace() {
         <Button onClick={submitPlace} variant="contained" size="large" color="primary" style={{marginTop: "1rem", padding: "0.5rem 4rem"}}>
           Add
         </Button>
+        </Container>
+        </Paper>
         </Container>
         
       </Container>
