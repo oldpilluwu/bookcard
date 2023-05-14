@@ -16,7 +16,7 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import DashboardLayout from '@/components/DashboardLayout';
-import CardLayout from '@/components/cardLayout';
+import CardLayout from '@/components/CardLayout';
 
 
 const theme = createTheme();

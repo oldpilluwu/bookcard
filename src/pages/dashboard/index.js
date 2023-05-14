@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/dist/client/router';
 import useUser from '@/lib/useUser'
-import CardLayout from '@/components/cardLayout';
+import CardLayout from '@/components/CardLayout';
 import DashboardLayout from '@/components/DashboardLayout';
 import {getter} from '@/lib/getter'
 
@@ -57,7 +57,7 @@ export default function Album({data}) {
                 {/* <CardLayout image="/SMU_Hall.jpg" heading="SMU HALL" description="Hall room for rent with high ceilings,
                     ample natural light, and modern amenities. Perfect for conferences, and other special occasions." /> */}
 
-                <CardLayout image={card.image} heading={card.name} description={card.description} />
+                <CardLayout id={card.id} image={card.image} heading={card.name} description={card.description} />
 
               </Grid>
             ))}

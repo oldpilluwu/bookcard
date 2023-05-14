@@ -35,7 +35,7 @@ import {
 
 
 const CardLayout = (props) => {
-        const {image , heading , description} = props
+        const {id, image , heading , description} = props
         const router = useRouter()
     return ( 
         // <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -84,7 +84,7 @@ const CardLayout = (props) => {
        
       </CardBody>
       <CardFooter className="pt-3">
-        <Button size="lg" fullWidth={true} onClick={() => router.push('/dashboard/place')}>
+        <Button size="lg" fullWidth={true} onClick={() => router.push(`/dashboard/place/${id}`)}>
           Reserve
         </Button>
       </CardFooter>
