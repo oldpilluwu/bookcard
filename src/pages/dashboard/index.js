@@ -36,11 +36,14 @@ export default function Album({data}) {
 
 
   const fetchPlaces = async () => {
+    const res = await fetch('/api/places/all_places', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    const json = await res.json()
     
-    console.log(res);
-    if(!res.ok) {
-      router.push('/auth/login');
-    }
     console.log(json.data)
     setPlaces(json.data)
   }
