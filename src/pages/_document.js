@@ -20,6 +20,7 @@ class MyDocument extends Document {
         <Head>
         <script src="https://cdn.tailwindcss.com"></script>
         
+        
         </Head>
         
         <body>

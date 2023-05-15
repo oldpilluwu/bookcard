@@ -41,7 +41,16 @@ export default function AddPlace() {
     }
     console.log(user);
     if (!name || !address || !description || !price || !image) {
-      toast.error('Please fill in all the fields');
+      toast.error("Please fill in all the fields", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       return;
     }
     setLoading(true);
@@ -66,19 +75,46 @@ export default function AddPlace() {
       const json = await res.json();
       console.log(json);
       if (json.status) {
-        toast.success('Place submitted successfully');
         setName("");
         setAddress("");
         setDescription("");
         setPrice(0);
         setImage("");
         setCapacity(0);
+        toast.success("Place submitted successfully", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       } else {
-        toast.error('Failed to submit place');
+        toast.error("Failed to submit place", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       }
     } catch (error) {
       console.error(error);
-      toast.error('An error occurred. Please try again.');
+      toast.error("An error occurred. Please try again.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
     setLoading(false);
   };
@@ -188,10 +224,7 @@ export default function AddPlace() {
 
   return (
     <DashboardLayout page="Add Place">
-      <ClientOnly>
-      {buildForm()}
-      </ClientOnly>
+      <ClientOnly>{buildForm()}</ClientOnly>
     </DashboardLayout>
-  )
-  
+  );
 }
