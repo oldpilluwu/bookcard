@@ -30,9 +30,9 @@ export default function Album({data}) {
 
   const [places, setPlaces] = React.useState([])
 
-  // React.useEffect(() => {
-  //   fetchPlaces()
-  // }, [])
+  React.useEffect(() => {
+    fetchPlaces()
+  }, [])
 
 
   const fetchPlaces = async () => {
@@ -51,7 +51,7 @@ export default function Album({data}) {
       <DashboardLayout page="Home">
         <div className='p-8'>
           <Grid container spacing={4}>
-          {data.map((card) => (
+          {places.map((card) => (
               <Grid item key={card.id} xs={12} sm={6} md={4}  style={{width:"100%"}}>
 
                 {/* <CardLayout image="/SMU_Hall.jpg" heading="SMU HALL" description="Hall room for rent with high ceilings,
@@ -67,12 +67,5 @@ export default function Album({data}) {
         </div>  
         </DashboardLayout>
   );
-}
-
-export async function getServerSideProps(context) {
-  const json = await getter('http://localhost:3000/api/places/all_places', context)
-  return {
-    props: {data: json.data}, // will be passed to the page component as props
-  };
 }
 
