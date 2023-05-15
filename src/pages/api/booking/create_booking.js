@@ -35,7 +35,6 @@ export default async function handler(req, res) {
             }
         });
         if(booking2){
-            console.log("You already have a booking in this slot");
             return res.status(400).send({
                 message: "You already have a booking in this slot",
                 status: false,
@@ -51,6 +50,7 @@ export default async function handler(req, res) {
             }
         });
         return res.status(200).send({
+            message: "Booking created successfully",
             status: true,
         });
     }catch(err){

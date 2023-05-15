@@ -9,6 +9,7 @@ import useUser from "@/lib/useUser";
 import DashboardLayout from "@/components/DashboardLayout";
 import ClientOnly from "@/lib/clientOnly";
 import { Paper } from "@mui/material";
+import { toast } from "react-toastify";
 
 export default function AddPlace() {
   const user = useUser();
@@ -21,19 +22,40 @@ export default function AddPlace() {
 
 
   const submitPlace = async (event) => {
-    event.preventDefault()
-    console.log(user)
-    const res = await fetch('/api/places/add_place', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({userId: user.id, name: name, address: address, description: description, price: parseFloat(price), image: image}),
-    })
-    const json = await res.json()
-    console.log(json);
-  }
+    event.preventDefault();
+    console.log(user);
+        if (!name || !address || !description || !price || !image) {
+      toast.error('Please fill in all the fields');
+      return;
+    }
 
+    try {
+      const res = await fetch('/api/places/add_place', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          name: name,
+          address: address,
+          description: description,
+          price: parseFloat(price),
+          image: image,
+        }),
+      });
+      const json = await res.json();
+      console.log(json);
+      if (json.status) {
+        toast.success('Place submitted successfully');
+      } else {
+        toast.error('Failed to submit place');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('An error occurred. Please try again.');
+    }
+  };
   function buildForm() {
     return (
       <Container style={{height: "100vh"}}>

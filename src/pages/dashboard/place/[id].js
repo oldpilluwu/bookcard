@@ -12,6 +12,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { Calendar } from "react-date-range";
 import { DateRangePicker } from "react-date-range";
 import { Button } from "@material-tailwind/react";
+import { toast } from "react-toastify";
 import {
   CurrencyDollarIcon,
   UserGroupIcon,
@@ -74,7 +75,13 @@ function Place() {
       },
       body: JSON.stringify(payload),
     });
-    console.log(res);
+    const json = await res.json();
+    const message = json.message;
+    if (json.status) {
+      toast.success(message);
+    }else{
+      toast.error(message);
+    }
   };
 
     
