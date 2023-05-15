@@ -257,7 +257,7 @@ function Place() {
                       className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    500 people
+                    {place.capacity} people
                   </div>
                   <div className="mt-2 flex items-center text-lg text-gray-600">
                     <CurrencyDollarIcon
@@ -267,14 +267,7 @@ function Place() {
                     {place.price} BDT
                   </div>
                 </div>
-                <div className="mt-2 flex items-center text-lg text-gray-600">
-                  <UserGroupIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                  {place.capacity} people
-                </div>
-                <div className="mt-2 flex items-center text-lg text-gray-600">
-                  <CurrencyDollarIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                  {place.price} BDT
-                </div>
+                
                 
                 <hr class="my-6 h-px border-0 bg-gray-200 dark:bg-gray-700" />
                 <div className="">{place.description}</div>

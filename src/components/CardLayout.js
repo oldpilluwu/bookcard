@@ -61,11 +61,11 @@ const CardLayout = (props) => {
         //     </CardActionArea>
         // </Card>
         <Card className="w-full h-full flex flex-col justify-between shadow-lg">
-      <CardHeader floated={false} color="blue-gray" className='md:max-h-40 lg:max-h-40 xl:max-h-40 '>
+      <CardHeader floated={false} color="blue-gray" className='max-h-52 sm:max-h-36 md:max-h-32 lg:max-h-42 xl:max-h-48'>
         <img
           src={image}
           alt="ui/ux review check"
-          className='w-fit  object-cover '
+          className='max-w-full max-h-full w-full h-auto block object-cover '
           
         />
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
