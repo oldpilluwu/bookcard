@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/dist/client/router';
 import useUser from '@/lib/useUser'
-import CardLayout from '@/components/CardLayout';
+import CardLayout from '../../components/CardLayout';
 import DashboardLayout from '@/components/DashboardLayout';
 import {getter} from '@/lib/getter'
 

@@ -276,6 +276,8 @@ function Place() {
                   {place.price} BDT
                 </div>
                 
+                <hr class="my-6 h-px border-0 bg-gray-200 dark:bg-gray-700" />
+                <div className="">{place.description}</div>
               </div>
             </div>
           </Card>

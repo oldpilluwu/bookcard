@@ -212,7 +212,7 @@ export default function AddPlace() {
           
           
         </Grid>
-        <Button disabled={loading} onClick={submitPlace} variant="contained" className="w-full mt-8 py-2 text-lg font-normal" >
+        <Button disabled={loading} onClick={submitPlace}   className="w-full mt-8 py-2 text-lg font-normal" >
           Add
         </Button>
         </Card>
