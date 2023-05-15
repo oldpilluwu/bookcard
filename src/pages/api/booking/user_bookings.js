@@ -2,7 +2,7 @@
 
 import { select } from "@material-tailwind/react";
 import { PrismaClient } from "@prisma/client";
-
+import { toast } from "react-toastify";
 
 const prisma = new PrismaClient();
 
@@ -30,10 +30,14 @@ export default async function handler(req, res) {
         });
         
         
+        
         return res.status(200).send({
             status: true,
             data: bookings,
+            
         });
+        
+
     }catch(err){
         console.log(err);
         return res.status(400).send({

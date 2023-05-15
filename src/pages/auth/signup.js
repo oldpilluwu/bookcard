@@ -14,6 +14,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/dist/client/router';
 import axios from 'axios';
 import Loading from '@/components/Loading';
+import { toast } from "react-toastify";
 import {
   Card,
   Input,
@@ -58,11 +59,31 @@ export default function SignIn() {
 
         if(email == "" || password == "" || name == "" || phone == ""){
             setMessage("Please fill all the fields");
+            toast.error("Please fill all the fields.", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
             return;
         }
 
         if(phone.length != 10){
             setMessage("Please enter a valid phone number");
+            toast.error("Please enter a valid phone number.", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
             return;
         }
 
@@ -82,6 +103,16 @@ export default function SignIn() {
 					"user",
 					JSON.stringify(response.data.data)
 				);
+        toast.success("Signup Successful", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
 				router.push("/");
 			}
 		}

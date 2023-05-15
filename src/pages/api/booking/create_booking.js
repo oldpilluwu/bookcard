@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import { PrismaClient } from "@prisma/client";
-
+import { toast } from "react-toastify";
 
 const prisma = new PrismaClient();
 
@@ -18,6 +18,7 @@ export default async function handler(req, res) {
                 status: "CONFIRMED"
             }
         });
+        
         if(booking){
             return res.status(400).send({
                 message: "Slot already booked",
@@ -34,6 +35,7 @@ export default async function handler(req, res) {
             }
         });
         if(booking2){
+            console.log("You already have a booking in this slot");
             return res.status(400).send({
                 message: "You already have a booking in this slot",
                 status: false,
