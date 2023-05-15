@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+import { PencilIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
@@ -36,7 +36,7 @@ const TABS = [
     },
   ];
 
-  const TABLE_HEAD = ["Place", "Booking Date", "Slot", "Status"];
+  const TABLE_HEAD = ["Place", "Booking Date", "Slot", "Status", ""];
     
   
 
@@ -78,6 +78,21 @@ const UserBookings = () => {
         setBookings(filteredData);
     }
 
+    const handleStatusChange = async (bookingId, placeId, date, slot, status) => {
+        const res = await fetch('/api/booking/update_status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({bookingId: bookingId, placeId: placeId, date: date, slot: slot, status: status }),
+        })
+        const json = await res.json()
+        console.log(json)
+        if (json.status) {
+            fetchBookings()
+        }
+    }
+
     const handleTabChange = (event, value) => {
         setSelectedTab(value);
         if (value === "ALL") {
@@ -97,7 +112,7 @@ const UserBookings = () => {
                   Booking list
                 </Typography>
                 <Typography color="gray" className="mt-1 font-normal">
-                  See information abput all bookings
+                  See information about all bookings
                 </Typography>
               </div>
               
@@ -176,6 +191,13 @@ const UserBookings = () => {
                             color={status === "CONFIRMED" ? "green" : status === "PENDING" ? "amber" : "red"}
                           />
                         </div>
+                      </td>
+                      <td className={classes}>
+                      <Tooltip content="Cancel Booking">
+                        <IconButton variant="text" disabled={status === "CANCELLED"} color="red" onClick={() => handleStatusChange(id, place.id, date, slot, 'CANCELLED')} >
+                            <XMarkIcon className="h-6 w-6" />
+                        </IconButton>
+                        </Tooltip>
                       </td>
                       
                     </tr>

@@ -16,7 +16,7 @@ function NavLink({icon, label = "Label", href = "#", router }) {
 		<Link href={href} >
             <Container  style={{display: "flex", alignItems: "center", padding: "1rem", backgroundColor: pathname === href ? "lavender" : "", color: pathname === href ? "MenuText" : "", transition: "all", transitionDuration: "200", height: "4rem", margin: " 0.5rem 0 0.5rem 0", borderRadius: "0px 4rem 4rem 0px"}}>
                 {icon ? icon : ""}
-                <Typography marginLeft="2rem" variant="h6"> {label} </Typography>
+                <div className="font-semibold text-lg ml-2"> {label} </div>
             </Container>
 			
 		</Link>
@@ -60,7 +60,8 @@ const routes = [
 
 function Sidebar() {
     return (
-        <nav >
+        <nav>
+            
             {routes.map((route, index) => (
                 <LinkAction
                     key={index}

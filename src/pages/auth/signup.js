@@ -82,7 +82,7 @@ export default function SignIn() {
 					"user",
 					JSON.stringify(response.data.data)
 				);
-				router.push("/dashboard");
+				router.push("/");
 			}
 		}
 	};

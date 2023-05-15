@@ -31,7 +31,6 @@ export default function Renters() {
 
   return (
     <AdminLayout>
-        <h1>Renters</h1>
         <CustomTable columns={columns} data={data} />
     </AdminLayout>
   )

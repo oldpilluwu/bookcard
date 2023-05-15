@@ -46,7 +46,6 @@ export default function Requests() {
 
   return (
     <AdminLayout>
-        <h1>Requests</h1>
         <CustomTable columns={columns} data={data} hasAction={true} action={handleClick} />
     </AdminLayout>
   )

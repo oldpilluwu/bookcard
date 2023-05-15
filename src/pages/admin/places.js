@@ -40,7 +40,6 @@ export default function Places() {
 
   return (
     <AdminLayout>
-        <h1>Renters</h1>
         <CustomTable columns={columns} data={data} />
     </AdminLayout>
   )

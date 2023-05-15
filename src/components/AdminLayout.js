@@ -29,11 +29,12 @@ function AdminLayout({ children }) {
         <ClientOnly>
         <div style={{height: "100vh", width: "auto"}}>
             <Grid container>
-                <Grid item xs={3} style={{ height: "100vh", backgroundColor: "InfoBackground"}}>
-                    <Box height={60} />
+                <Grid item xs={2} style={{ height: "100vh", backgroundColor: "whitesmoke"}}>
+                    <h1 className="text-2xl text-gray-800 p-6 font-bold">BOOKCARD</h1>
+                    <hr/>
                     <Sidebar />
                 </Grid>
-                <Grid item xs={9}>
+                <Grid item xs={10}>
                     <Header />
                     <Container>
 					{children}

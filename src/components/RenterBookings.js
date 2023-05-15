@@ -115,7 +115,7 @@ const RenterBookings = () => {
                   Booking list
                 </Typography>
                 <Typography color="gray" className="mt-1 font-normal">
-                  See information abput all bookings
+                  See information about all bookings
                 </Typography>
               </div>
               
@@ -221,12 +221,12 @@ const RenterBookings = () => {
                       </td>
                       <td className={classes}>
                         <Tooltip content="Confirm Booking">
-                        <IconButton variant="text" color="green" onClick={() => handleStatusChange(id, place.id, date, slot, 'CONFIRMED')}>
+                        <IconButton variant="text" disabled={status !== "PENDING"} color="green" onClick={() => handleStatusChange(id, place.id, date, slot, 'CONFIRMED')}>
                             <CheckIcon className="h-6 w-6" />
                         </IconButton>
                         </Tooltip>
                         <Tooltip content="Cancel Booking">
-                        <IconButton variant="text" color="red" onClick={() => handleStatusChange(id, place.id, date, slot, 'CANCELLED')} >
+                        <IconButton variant="text" disabled={status !== "PENDING"} color="red" onClick={() => handleStatusChange(id, place.id, date, slot, 'CANCELLED')} >
                             <XMarkIcon className="h-6 w-6" />
                         </IconButton>
                         </Tooltip>
