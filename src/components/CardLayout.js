@@ -60,12 +60,12 @@ const CardLayout = (props) => {
         //     </CardActions> */}
         //     </CardActionArea>
         // </Card>
-        <Card className="w-full shadow-lg">
-      <CardHeader floated={false} color="blue-gray" className='md:max-h-40 lg:max-h-52 xl:max-h-60'>
+        <Card className="w-full h-full flex flex-col justify-between shadow-lg">
+      <CardHeader floated={false} color="blue-gray" className='md:max-h-40 lg:max-h-40 xl:max-h-40 '>
         <img
           src={image}
           alt="ui/ux review check"
-          className='w-fit h-fit object-contain'
+          className='w-fit  object-cover '
           
         />
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />

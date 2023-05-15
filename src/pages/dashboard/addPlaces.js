@@ -55,20 +55,50 @@ export default function AddPlace() {
     }
     setLoading(true);
 
+    
     try {
+
       const formData = new FormData();
-      formData.append("userId", user.id);
-      formData.append("name", name);
-      formData.append("address", address);
-      formData.append("description", description);
-      formData.append("price", parseFloat(price));
-      formData.append("image", image);
-      formData.append("capacity", parseInt(capacity));
-      formData.append("image", image);
+      formData.append('file', image);
+      formData.append('upload_preset', 'bookcard');
+
+      const imgRes = await fetch('https://api.cloudinary.com/v1_1/dtlxcmpxa/image/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      const imgJson = await imgRes.json();
+      console.log(imgJson);
+      if (!imgJson.secure_url) {
+        toast.error("Failed to upload image", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setLoading(false);
+        return;
+      }
+
+
+      const payload = {
+        userId: JSON.parse(localStorage.getItem('user')).id,
+        name: name,
+        address: address,
+        description: description,
+        price: price,
+        capacity: capacity,
+        image: imgJson.secure_url
+      }
+      console.log(payload)
       
       const res = await fetch('/api/places/add_place', {
         method: 'POST',
-        body: formData
+        body: JSON.stringify(payload)
       });
       
 
