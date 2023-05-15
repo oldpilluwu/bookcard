@@ -51,8 +51,8 @@ export default function Album({data}) {
       <DashboardLayout page="Home">
         <div className='p-8'>
           <Grid container spacing={4}>
-            {data.map((card) => (
-              <Grid item key={card.id} xs={12} sm={6} md={4}>
+          {data.map((card) => (
+              <Grid item key={card.id} xs={12} sm={6} md={4}  style={{width:"100%"}}>
 
                 {/* <CardLayout image="/SMU_Hall.jpg" heading="SMU HALL" description="Hall room for rent with high ceilings,
                     ample natural light, and modern amenities. Perfect for conferences, and other special occasions." /> */}
@@ -60,7 +60,9 @@ export default function Album({data}) {
                 <CardLayout id={card.id} image={card.image} heading={card.name} description={card.description} />
 
               </Grid>
+              
             ))}
+            
           </Grid>
         </div>  
         </DashboardLayout>

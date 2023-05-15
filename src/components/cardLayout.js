@@ -60,12 +60,12 @@ const CardLayout = (props) => {
         //     </CardActions> */}
         //     </CardActionArea>
         // </Card>
-        <Card className="w-full max-w-[26rem] shadow-lg">
-      <CardHeader floated={false} color="blue-gray" className='max-h-40'>
+        <Card className="w-full shadow-lg">
+      <CardHeader floated={false} color="blue-gray" className='md:max-h-40 lg:max-h-52 xl:max-h-60'>
         <img
           src={image}
           alt="ui/ux review check"
-          className='w-fit object-contain'
+          className='w-fit h-fit object-contain'
           
         />
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
@@ -73,7 +73,7 @@ const CardLayout = (props) => {
       </CardHeader>
       <CardBody>
         <div className="mb-3 flex items-center justify-between">
-          <Typography variant="h5" color="blue-gray" className="font-medium">
+          <Typography variant="h5" color="blue-gray" className="font-medium xl:text-3xl">
             {heading}
           </Typography>
           

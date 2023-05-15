@@ -1,28 +1,27 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// datasource db {
+//   provider = "mysql"
+//   url      = env("DATABASE_URL")
+//   relationMode = "prisma"
+// }
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
-
-// datasource db {
-//   provider = "postgresql"
-//   url      = env("DATABASE_URL")
-// }
 
 model User {
   id            String    @id @default(cuid())
   name          String?
   password      String?
   email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
   phone         String?
-  image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   role          String?
@@ -38,8 +37,6 @@ model Place {
   name          String?
   description   String?
   address       String?
-  lat           Float?
-  lng           Float?
   price         Float?
   bookings      Booking[]
   capacity      Int?
@@ -48,6 +45,8 @@ model Place {
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // @@index([userId])
 }
 
 model Booking {
@@ -56,12 +55,13 @@ model Booking {
   placeId       String    @map("place_id")
   date          DateTime?
   slot         String?
-  timeStart     DateTime?
-  timeEnd       DateTime?
   status        String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  // @@index([userId])
+  // @@index([placeId])
 }
 

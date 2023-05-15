@@ -9,7 +9,6 @@ const ClientOnly = ({children}) => {
 	}, []);
 
     if(!domLoaded) return <div></div>
-    console.log("o")
     return (
         <>{children}</>
     )
