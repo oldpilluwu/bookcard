@@ -1,7 +1,7 @@
 import DashboardLayout from "@/components/DashboardLayout";
 import { Card, Carousel, IconButton } from "@material-tailwind/react";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import CustomCarousel from "@/components/CustomCarousel";
 import Heading from "@/components/Heading";
 import { useRouter } from "next/dist/client/router";
@@ -20,7 +20,7 @@ import {
   MapPinIcon,
   CalendarIcon,
   PencilIcon,
-} from '@heroicons/react/20/solid'
+} from "@heroicons/react/20/solid";
 import { Divider } from "@mui/material";
 
 function Place() {
@@ -30,7 +30,6 @@ function Place() {
   const [user, setUser] = useState({});
   const [place, setPlace] = useState([]);
 
-
   const router = useRouter();
   const placeId = router.query.id;
   console.log(placeId);
@@ -39,7 +38,6 @@ function Place() {
     fetchPlace();
     setUser(JSON.parse(localStorage.getItem("user")));
   }, []);
-
 
   const fetchPlace = async () => {
     const res = await fetch("/api/places/get_place_by_id", {
@@ -64,7 +62,7 @@ function Place() {
       placeId: placeId,
       slot: slots[slotIndex].name,
       date: startDate.toJSON(),
-    }
+    };
 
     console.log(payload);
 
@@ -78,14 +76,29 @@ function Place() {
     const json = await res.json();
     const message = json.message;
     if (json.status) {
-      toast.success(message);
-    }else{
-      toast.error(message);
+      toast.success(message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      toast.error(message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
-
-    
-
 
   const selectionRange = {
     startDate: startDate,
@@ -109,12 +122,11 @@ function Place() {
       startTime: "6:00 PM",
       endTime: "11:00 PM",
     },
-
-  ]
+  ];
 
   function buildSlots() {
     return (
-      <div className="flex flex-col gap-2 w-full h-full md:w-1/2">
+      <div className="flex h-full w-full flex-col gap-2 md:w-1/2">
         <div
           className="
         flex
@@ -123,31 +135,43 @@ function Place() {
         gap-2
         text-xl
         font-semibold
-      ">
-          <BookmarkIcon className="w-6 h-6" />
+      "
+        >
+          <BookmarkIcon className="h-6 w-6" />
           <span>Slots</span>
         </div>
-          <div className="flex items-center gap-2 mt-4 h-full w-full">
-            {slots.map((slot, index) => {
-              return (
-                  <div onClick={() => handleSlotSelect(index)} key={slot.name} className={`border-solid hover:bg-blue-100 transition-all hover:cursor-pointer  rounded-lg p-4 h-full ${slotIndex === index ? "border-blue-500 border-4" : "border-2 border-gray-200"}`}>
-                    <h1 className={"font-medium text-gray-700 "} >
-                      {slot.name}
-                    </h1>
-                    <p className={"text-sm text-gray-500"}>
-                      {slot.startTime} - {slot.endTime}
-                    </p>
-                  </div>
-            )})}
-            </div>
-            <div className="flex justify-start w-full">
-              <Button onClick={handleSubmit} color="blue" ripple="light" className="w-full md:w-1/2 mt-4">
-                Book
-              </Button>
+        <div className="mt-4 flex h-full w-full items-center gap-2">
+          {slots.map((slot, index) => {
+            return (
+              <div
+                onClick={() => handleSlotSelect(index)}
+                key={slot.name}
+                className={`h-full rounded-lg border-solid p-4  transition-all hover:cursor-pointer hover:bg-blue-100 ${
+                  slotIndex === index
+                    ? "border-4 border-blue-500"
+                    : "border-2 border-gray-200"
+                }`}
+              >
+                <h1 className={"font-medium text-gray-700 "}>{slot.name}</h1>
+                <p className={"text-sm text-gray-500"}>
+                  {slot.startTime} - {slot.endTime}
+                </p>
               </div>
+            );
+          })}
         </div>
-              
-    )
+        <div className="flex w-full justify-start">
+          <Button
+            onClick={handleSubmit}
+            color="blue"
+            ripple="light"
+            className="mt-4 w-full md:w-1/2"
+          >
+            Book
+          </Button>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -174,7 +198,7 @@ function Place() {
     //         /> */}
     //         <Calendar
     //           date={new Date()}
-    //           onChange={(date) => setStartDate(date)}       
+    //           onChange={(date) => setStartDate(date)}
     //         />
     //       </div>
     //     </div>
@@ -182,10 +206,10 @@ function Place() {
     //       <div className="flex flex-col gap-2">
     //         <div
     //           className="
-    //         flex 
-    //         flex-row 
-    //         items-center 
-    //         gap-2 
+    //         flex
+    //         flex-row
+    //         items-center
+    //         gap-2
     //         text-xl
     //         font-semibold
     //       "
@@ -194,10 +218,10 @@ function Place() {
     //         </div>
     //         <div
     //           className="
-    //         flex 
-    //         flex-row 
-    //         items-center 
-    //         gap-4 
+    //         flex
+    //         flex-row
+    //         items-center
+    //         gap-4
     //         font-light
     //         text-neutral-500
     //       "
@@ -212,78 +236,85 @@ function Place() {
     //   </div>
     // </DashboardLayout>
     <DashboardLayout>
-      <div className="h-full flex md:mt-8 flex-col-reverse md:flex-row w-full md:px-8 md:gap-6">
-        <div className="md:w-1/2 w-full">
+      <div className="flex h-full w-full flex-col-reverse md:mt-8 md:flex-row md:gap-6 md:px-8">
+        <div className="w-full md:w-1/2">
           <Card className="h-full p-6">
-          <div className="lg:flex lg:items-center lg:justify-between">
-            <div className="min-w-0">
-              <h2 className="text-2xl font-bold mb-2 leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                {place.name}
-              </h2>
-              <div className="mt-1 flex flex-col lg:mt-0 lg:flex-row lg:flex-wrap lg:space-x-6">
-                <div className="mt-2 flex items-center text-lg text-gray-600">
-                  <MapPinIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                  {place.address}
+            <div className="lg:flex lg:items-center lg:justify-between">
+              <div className="min-w-0">
+                <h2 className="mb-2 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+                  {place.name}
+                </h2>
+                <div className="mt-1 flex flex-col lg:mt-0 lg:flex-row lg:flex-wrap lg:space-x-6">
+                  <div className="mt-2 flex items-center text-lg text-gray-600">
+                    <MapPinIcon
+                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
+                      aria-hidden="true"
+                    />
+                    {place.address}
+                  </div>
+                  <div className="mt-2 flex items-center text-lg text-gray-600">
+                    <UserGroupIcon
+                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
+                      aria-hidden="true"
+                    />
+                    500 people
+                  </div>
+                  <div className="mt-2 flex items-center text-lg text-gray-600">
+                    <CurrencyDollarIcon
+                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
+                      aria-hidden="true"
+                    />
+                    {place.price} BDT
+                  </div>
                 </div>
-                <div className="mt-2 flex items-center text-lg text-gray-600">
-                  <UserGroupIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                  500 people
-                </div>
-                <div className="mt-2 flex items-center text-lg text-gray-600">
-                  <CurrencyDollarIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                  {place.price} BDT
-                </div>
-                
+                <hr class="my-6 h-px border-0 bg-gray-200 dark:bg-gray-700" />
+                <div className="">{place.description}</div>
               </div>
-              <hr class="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700"/>
-              <div className="">
-              {place.description}
-              </div>
-              </div>
-            
-              </div>
-              </Card>
-              </div>
-              <img src={place.image}
-                alt="ui/ux review check"
-                className='md:w-1/2 w-full object-contain md:rounded-lg'/>
+            </div>
+          </Card>
         </div>
-        {user.role === 'RENTER' ? <></> : <div className="h-full mb-12 flex flex-col p-6 w-full md:p-8 md:gap-6 md:mt-8 bg-white">
-          <div className="md:w-1/2 w-full  ">
-          
-          <h2 className="text-2xl font-bold mb-2 leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                Book this place
-              </h2>
+        <img
+          src={place.image}
+          alt="ui/ux review check"
+          className="w-full object-contain md:w-1/2 md:rounded-lg"
+        />
+      </div>
+      {user.role === "RENTER" ? (
+        <></>
+      ) : (
+        <div className="mb-12 flex h-full w-full flex-col bg-white p-6 md:mt-8 md:gap-6 md:p-8">
+          <div className="w-full md:w-1/2  ">
+            <h2 className="mb-2 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+              Book this place
+            </h2>
           </div>
 
-          
-            <div className="w-full flex flex-col md:flex-row justify-between ">
-            <div className="w-full md:w-1/2 flex-col justify-center items-center mt-2 md:mt-0">
-            <div
-          className="
+          <div className="flex w-full flex-col justify-between md:flex-row ">
+            <div className="mt-2 w-full flex-col items-center justify-center md:mt-0 md:w-1/2">
+              <div
+                className="
         flex
         flex-row
         items-center
         gap-2
         text-xl
         font-semibold
-      ">
-          <CalendarIcon className="w-6 h-6" />
-          <span>Calender</span>
+      "
+              >
+                <CalendarIcon className="h-6 w-6" />
+                <span>Calender</span>
+              </div>
+              <div className="flex w-full justify-center">
+                <Calendar
+                  date={startDate}
+                  onChange={(date) => setStartDate(date)}
+                />
+              </div>
+            </div>
+            {buildSlots()}
+          </div>
         </div>
-            <div className="w-full flex justify-center">
-            <Calendar
-              
-               date={startDate}
-               onChange={(date) => setStartDate(date)}       
-               />
-            </div>
-            </div>
-               {buildSlots()}
-            </div>
-          
-          
-        </div>}
+      )}
     </DashboardLayout>
   );
 }
